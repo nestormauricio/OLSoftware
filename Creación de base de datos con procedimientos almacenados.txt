@@ -1,0 +1,305 @@
+USE [master]
+GO
+/****** Object:  Database [OLSoftware]    Script Date: 09/01/2024 10:16:25 ******/
+CREATE DATABASE [OLSoftware]
+ CONTAINMENT = NONE
+ ON  PRIMARY 
+( NAME = N'OLSoftware', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\DATA\OLSoftware.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
+ LOG ON 
+( NAME = N'OLSoftware_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\DATA\OLSoftware_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
+ WITH CATALOG_COLLATION = DATABASE_DEFAULT
+GO
+ALTER DATABASE [OLSoftware] SET COMPATIBILITY_LEVEL = 150
+GO
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [OLSoftware].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+ALTER DATABASE [OLSoftware] SET ANSI_NULL_DEFAULT OFF 
+GO
+ALTER DATABASE [OLSoftware] SET ANSI_NULLS OFF 
+GO
+ALTER DATABASE [OLSoftware] SET ANSI_PADDING OFF 
+GO
+ALTER DATABASE [OLSoftware] SET ANSI_WARNINGS OFF 
+GO
+ALTER DATABASE [OLSoftware] SET ARITHABORT OFF 
+GO
+ALTER DATABASE [OLSoftware] SET AUTO_CLOSE OFF 
+GO
+ALTER DATABASE [OLSoftware] SET AUTO_SHRINK OFF 
+GO
+ALTER DATABASE [OLSoftware] SET AUTO_UPDATE_STATISTICS ON 
+GO
+ALTER DATABASE [OLSoftware] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+ALTER DATABASE [OLSoftware] SET CURSOR_DEFAULT  GLOBAL 
+GO
+ALTER DATABASE [OLSoftware] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+ALTER DATABASE [OLSoftware] SET NUMERIC_ROUNDABORT OFF 
+GO
+ALTER DATABASE [OLSoftware] SET QUOTED_IDENTIFIER OFF 
+GO
+ALTER DATABASE [OLSoftware] SET RECURSIVE_TRIGGERS OFF 
+GO
+ALTER DATABASE [OLSoftware] SET  DISABLE_BROKER 
+GO
+ALTER DATABASE [OLSoftware] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+ALTER DATABASE [OLSoftware] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+ALTER DATABASE [OLSoftware] SET TRUSTWORTHY OFF 
+GO
+ALTER DATABASE [OLSoftware] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+ALTER DATABASE [OLSoftware] SET PARAMETERIZATION SIMPLE 
+GO
+ALTER DATABASE [OLSoftware] SET READ_COMMITTED_SNAPSHOT OFF 
+GO
+ALTER DATABASE [OLSoftware] SET HONOR_BROKER_PRIORITY OFF 
+GO
+ALTER DATABASE [OLSoftware] SET RECOVERY FULL 
+GO
+ALTER DATABASE [OLSoftware] SET  MULTI_USER 
+GO
+ALTER DATABASE [OLSoftware] SET PAGE_VERIFY CHECKSUM  
+GO
+ALTER DATABASE [OLSoftware] SET DB_CHAINING OFF 
+GO
+ALTER DATABASE [OLSoftware] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+GO
+ALTER DATABASE [OLSoftware] SET TARGET_RECOVERY_TIME = 60 SECONDS 
+GO
+ALTER DATABASE [OLSoftware] SET DELAYED_DURABILITY = DISABLED 
+GO
+ALTER DATABASE [OLSoftware] SET ACCELERATED_DATABASE_RECOVERY = OFF  
+GO
+EXEC sys.sp_db_vardecimal_storage_format N'OLSoftware', N'ON'
+GO
+ALTER DATABASE [OLSoftware] SET QUERY_STORE = OFF
+GO
+USE [OLSoftware]
+GO
+/****** Object:  Table [dbo].[Aspirantes]    Script Date: 09/01/2024 10:16:26 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Aspirantes](
+	[idAspirantePk] [int] IDENTITY(1,1) NOT NULL,
+	[numeroDocumentoAspirante] [int] NULL,
+	[apellidosNombresAspirante] [nvarchar](max) NULL,
+	[telefonoAspirante] [nvarchar](max) NULL,
+	[correoElectronicoAspirante] [nvarchar](max) NULL,
+	[idUsuarioFk] [int] NULL,
+	[fechaActualizacion] [datetime] NULL,
+ CONSTRAINT [PK_Aspirantes] PRIMARY KEY CLUSTERED 
+(
+	[idAspirantePk] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[EstadosPruebas]    Script Date: 09/01/2024 10:16:26 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[EstadosPruebas](
+	[idEstadoPruebaPk] [int] IDENTITY(1,1) NOT NULL,
+	[nombreEstadoPrueba] [nvarchar](max) NULL,
+	[idUsuarioFk] [int] NULL,
+	[fechaActualizacion] [datetime] NULL,
+ CONSTRAINT [PK_EstadosPruebas] PRIMARY KEY CLUSTERED 
+(
+	[idEstadoPruebaPk] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Lenguajes]    Script Date: 09/01/2024 10:16:26 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Lenguajes](
+	[idLenguajePk] [int] IDENTITY(1,1) NOT NULL,
+	[nombreLenguaje] [nvarchar](max) NULL,
+	[idUsuarioFk] [int] NULL,
+	[fechaActualizacion] [datetime] NULL,
+ CONSTRAINT [PK_Lenguajes] PRIMARY KEY CLUSTERED 
+(
+	[idLenguajePk] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Niveles]    Script Date: 09/01/2024 10:16:26 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Niveles](
+	[idNivelPk] [int] IDENTITY(1,1) NOT NULL,
+	[nombreNivel] [nvarchar](max) NULL,
+	[idUsuarioFk] [int] NULL,
+	[fechaActualizacion] [datetime] NULL,
+ CONSTRAINT [PK_Niveles] PRIMARY KEY CLUSTERED 
+(
+	[idNivelPk] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[PruebasSeleccion]    Script Date: 09/01/2024 10:16:26 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[PruebasSeleccion](
+	[idPruebaPk] [int] IDENTITY(1,1) NOT NULL,
+	[nombrePrueba] [nvarchar](max) NULL,
+	[idAspiranteFk] [int] NULL,
+	[calificacionPrueba] [decimal](5, 2) NULL,
+	[fechaInicio] [date] NULL,
+	[fechaFinalizacion] [date] NULL,
+	[idTipoPruebaFk] [int] NULL,
+	[idEstadoPruebaFk] [int] NULL,
+	[idLenguajeFk] [int] NULL,
+	[cantidadPreguntas] [bigint] NULL,
+	[idNivelFk] [int] NULL,
+	[idUsuarioFk] [int] NULL,
+	[fechaActualizacion] [datetime] NULL,
+ CONSTRAINT [PK_PruebasSeleccion] PRIMARY KEY CLUSTERED 
+(
+	[idPruebaPk] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[TipoPruebas]    Script Date: 09/01/2024 10:16:26 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[TipoPruebas](
+	[idTipoPruebaPk] [int] IDENTITY(1,1) NOT NULL,
+	[nombreTipoPrueba] [nvarchar](max) NULL,
+	[idUsuarioFk] [int] NULL,
+	[fechaActualizacion] [datetime] NULL,
+ CONSTRAINT [PK_TipoPruebas] PRIMARY KEY CLUSTERED 
+(
+	[idTipoPruebaPk] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[PruebasSeleccion]  WITH CHECK ADD  CONSTRAINT [FK_PruebasSeleccion_Aspirantes] FOREIGN KEY([idAspiranteFk])
+REFERENCES [dbo].[Aspirantes] ([idAspirantePk])
+GO
+ALTER TABLE [dbo].[PruebasSeleccion] CHECK CONSTRAINT [FK_PruebasSeleccion_Aspirantes]
+GO
+ALTER TABLE [dbo].[PruebasSeleccion]  WITH CHECK ADD  CONSTRAINT [FK_PruebasSeleccion_EstadosPruebas] FOREIGN KEY([idEstadoPruebaFk])
+REFERENCES [dbo].[EstadosPruebas] ([idEstadoPruebaPk])
+GO
+ALTER TABLE [dbo].[PruebasSeleccion] CHECK CONSTRAINT [FK_PruebasSeleccion_EstadosPruebas]
+GO
+ALTER TABLE [dbo].[PruebasSeleccion]  WITH CHECK ADD  CONSTRAINT [FK_PruebasSeleccion_Lenguajes] FOREIGN KEY([idLenguajeFk])
+REFERENCES [dbo].[Lenguajes] ([idLenguajePk])
+GO
+ALTER TABLE [dbo].[PruebasSeleccion] CHECK CONSTRAINT [FK_PruebasSeleccion_Lenguajes]
+GO
+ALTER TABLE [dbo].[PruebasSeleccion]  WITH CHECK ADD  CONSTRAINT [FK_PruebasSeleccion_Niveles] FOREIGN KEY([idNivelFk])
+REFERENCES [dbo].[Niveles] ([idNivelPk])
+GO
+ALTER TABLE [dbo].[PruebasSeleccion] CHECK CONSTRAINT [FK_PruebasSeleccion_Niveles]
+GO
+ALTER TABLE [dbo].[PruebasSeleccion]  WITH CHECK ADD  CONSTRAINT [FK_PruebasSeleccion_TipoPruebas] FOREIGN KEY([idTipoPruebaFk])
+REFERENCES [dbo].[TipoPruebas] ([idTipoPruebaPk])
+GO
+ALTER TABLE [dbo].[PruebasSeleccion] CHECK CONSTRAINT [FK_PruebasSeleccion_TipoPruebas]
+GO
+ALTER TABLE [dbo].[PruebasSeleccion]  WITH CHECK ADD  CONSTRAINT [SiteID_Ck] CHECK  (([calificacionPrueba]>=(0) AND [calificacionPrueba]<=(100)))
+GO
+ALTER TABLE [dbo].[PruebasSeleccion] CHECK CONSTRAINT [SiteID_Ck]
+GO
+/****** Object:  StoredProcedure [dbo].[eliminarAspirante]    Script Date: 09/01/2024 10:16:26 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[eliminarAspirante](@idAspirantePk int)
+AS
+BEGIN
+DELETE FROM Aspirantes WHERE idAspirantePk = @idAspirantePk
+END
+GO
+/****** Object:  StoredProcedure [dbo].[listarAspirantes]    Script Date: 09/01/2024 10:16:26 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[listarAspirantes]
+AS
+BEGIN
+	SELECT * FROM Aspirantes 
+END
+GO
+/****** Object:  StoredProcedure [dbo].[modificarAspirante]    Script Date: 09/01/2024 10:16:26 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[modificarAspirante](
+@idAspirantePk int,
+@numeroDocumentoAspirante int,
+@apellidosNombresAspirante varchar(MAX),
+@telefonoAspirante varchar(MAX),
+@correoElectronicoAspirante varchar(MAX),
+@idUsuarioFk int,
+@fechaActualizacion datetime
+)
+AS
+BEGIN
+UPDATE Aspirantes SET
+numeroDocumentoAspirante = @numeroDocumentoAspirante,
+apellidosNombresAspirante = @apellidosNombresAspirante,
+telefonoAspirante = @telefonoAspirante,
+correoElectronicoAspirante = @correoElectronicoAspirante,
+idUsuarioFk = @idUsuarioFk,
+fechaActualizacion = @fechaActualizacion
+WHERE idAspirantePk = @idAspirantePk
+END
+GO
+/****** Object:  StoredProcedure [dbo].[obtenerAspirante]    Script Date: 09/01/2024 10:16:26 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[obtenerAspirante](@idAspirantePk int)
+AS
+BEGIN
+SELECT * FROM Aspirantes WHERE idAspirantePk = @idAspirantePk
+END
+GO
+/****** Object:  StoredProcedure [dbo].[registrarAspirante]    Script Date: 09/01/2024 10:16:26 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[registrarAspirante](
+@numeroDocumentoAspirante int,
+@apellidosNombresAspirante varchar(MAX),
+@telefonoAspirante varchar(MAX),
+@correoElectronicoAspirante varchar(MAX),
+@idUsuarioFk int,
+@fechaActualizacion datetime
+)
+AS
+BEGIN
+INSERT INTO Aspirantes(numeroDocumentoAspirante, apellidosNombresAspirante, telefonoAspirante, correoElectronicoAspirante, idUsuarioFk, fechaActualizacion)
+VALUES(@numeroDocumentoAspirante, @apellidosNombresAspirante, @telefonoAspirante, @correoElectronicoAspirante, @idUsuarioFk, @fechaActualizacion)
+END
+GO
+USE [master]
+GO
+ALTER DATABASE [OLSoftware] SET  READ_WRITE 
+GO
